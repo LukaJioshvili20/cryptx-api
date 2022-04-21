@@ -3,8 +3,8 @@
   --text-secondary: #555;
   --text-active: var(--active-color);
 
-  --active-color: #8CAF64;
-  --passive-color: #FD3F40;
+  --positive-color: #00E670;
+  --negative-color: #FF1740;
 
   --background-primary: #FFFFFF;
   --background-secondary: #F3F4F6;
@@ -24,9 +24,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--text-primary);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.CoinIcon{
+  max-width: 1.5rem;
+  max-height: 1.5rem;
+  margin: 0.5rem ;
+  padding: auto 0;
 }

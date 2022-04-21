@@ -7,7 +7,11 @@ export class BaseCard extends Component{
         return(
             <React.Fragment>
                 <BaseCards>
-                    <h2>Total cards</h2>
+                    <div>
+                        <h1>$423,521,642</h1>
+                        <span>1.3%<span>&#8593;</span></span>
+                    </div>
+                    <p>Total</p>
                 </BaseCards>
             </React.Fragment>
         )
