@@ -3,10 +3,15 @@ import axios from "axios"
 import { useTable } from "react-table"
 import { useGlobalFilter, useSortBy } from "react-table/dist/react-table.development";
 import { SearchFilter } from "./SearchFilter"
-// import { RangeFilter } from "./RangeFIlter"
+
+
+import BaseCard from "../ui/BaseCard"
 // styles
+import { Currency } from "../styles/Currencies.styled"
+
+
 export function Currencies(props){
-    // eslint-disable-next-line
+    
     const [ currencies, setCurrencies ] = useState([]);
 
     const fetchCurrencies = async () => {
@@ -23,19 +28,19 @@ export function Currencies(props){
     
         };
 
-
         const currenciesData = useMemo(() => [...currencies], [currencies]);
         
-
-    
-        
-        
-        // console.log('This is',productsData)
         const columns = useMemo(
             () => [
               {
                 Header: '#',
                 accessor: 'market_cap_rank', // accessor is the "key" in the data
+                Cell: (props) =>(
+                  <span>
+                    <img src="https://cdn-icons-png.flaticon.com/512/149/149220.png" height="16" width="16" alt="" />
+                    {props.row.original.market_cap_rank}
+                  </span>
+                )
               }, 
               {
                 Header: '',
@@ -63,7 +68,9 @@ export function Currencies(props){
                 accessor: 'current_price',
                 Cell: (props) =>{
                     return '$' + props.row.original.current_price
-                }
+                },
+                
+                
               },
               {
                 Header: '24th ',
@@ -110,24 +117,27 @@ export function Currencies(props){
             fetchCurrencies();
         }, []);
 
+        const isEven = (index) => index % 2 === 0;
 
         return(
            <React.Fragment>
-               <div>
-
-               </div>
-               <div>
+             <Currency>
+                <div className="cards">
+                  <BaseCard currencies={currencies} namestyle="total-positive" aim="market_cap" title="Market Capitalization"/>
+                  <BaseCard currencies={currencies} namestyle="total-positive" aim="high_24th" title="24th Trade Volume "/>
+                  <BaseCard currencies={currencies} namestyle="total-passive" aim="total_coins" title="# of Coins"/>
+                </div>
+               <div className="filters">
                 <SearchFilter
                     preGlobalFilteredRows={preGlobalFilteredRows}
                     setGlobalFilter={setGlobalFilter}
                     SearchFilter={state.SearchFilter}
-                />
-                
-                
+                />           
                </div>
 
 
-               <table {...getTableProps()}>
+                <div className="fixed">
+                <table {...getTableProps()} cellPadding="0" cellSpacing="0">
                <thead>
                    {headerGroups.map((headerGroup)=>(
                       <tr {...headerGroup.getHeaderGroupProps()}>
@@ -141,11 +151,13 @@ export function Currencies(props){
                    ))}
                </thead>
                <tbody {...getTableBodyProps()}>
-                    {rows.map((row)=>{
+                    {rows.map((row, index)=>{
                         prepareRow(row);
 
                         return (
-                           <tr {...row.getRowProps()}>
+                           <tr {...row.getRowProps()} 
+                           className={isEven(index) ? 'not-even' : 'even' }
+                           >
                                {row.cells.map((cell, index )=>(
                                    <td {...cell.getCellProps()}>
                                        {cell.render("Cell")}
@@ -155,10 +167,14 @@ export function Currencies(props){
                         )
                     })}
                </tbody>
-           </table>
+               </table>
+                </div>
+           
+             </Currency>
            </React.Fragment>
         )
     
 }
+
 
 export default Currencies;

@@ -1,6 +1,5 @@
 // Components
 import { TheHeader } from "../components/layout/TheHeader"
-import { Totals } from "../components/ui/Totals"
 import { Currencies } from "../components/ui/Currencies"
 // Utils
 import { PageTitle } from "../utils/PageTitle"
@@ -13,7 +12,6 @@ function Home(){
         <React.Fragment>
            <AnimatedPage>
                 <TheHeader/>
-                <Totals/>
                 <Currencies/>
            </AnimatedPage>
         </React.Fragment>

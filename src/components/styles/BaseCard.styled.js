@@ -3,11 +3,11 @@ import styled from "styled-components"
 export const BaseCards = styled.div`
     display:flex;
     flex-direction:column;
-    border-left: 0.4rem solid var(--positive-color);
     padding:0.5rem;
+    margin-right: 1rem;
     border-radius: 0.5rem;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    width: 200px;
+    max-width: 16rem;
     
     div{
         display:flex;
