@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import { useAsyncDebounce } from "react-table/dist/react-table.development";
-
 // Styles
 import { Search } from "../styles/SearchFilter.styled"
 
@@ -16,16 +15,13 @@ export function SearchFilter({
     }, 300);
     
     return(
-        <React.Fragment>
-            <Search>
-                <form className="nosubmit">
-                    <input className="nosubmit" type="number" value={value || ""} onChange={(e)=>{
-                     setValue(e.target.value);
-                     onChange(e.target.value);
-                  }} placeholder={`${count} records...`} />
-            
-                </form>
-            </Search>
-        </React.Fragment>
+        <Search>
+            <form className="nosubmit">
+                <input className="nosubmit" type="number" value={value || ""} onChange={(e)=>{
+                 setValue(e.target.value);
+                 onChange(e.target.value);
+              }} placeholder={`${count} records...`} />
+            </form>
+        </Search>
     )
 }

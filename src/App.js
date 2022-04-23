@@ -2,7 +2,6 @@ import './App.css';
 // Router
 import { useLocation } from 'react-router';
 import { Routes, Route, Navigate } from "react-router-dom"
-
 // Pages
 import Home from "./pages/Home"
 import PageNotFound from "./pages/PageNotFound"

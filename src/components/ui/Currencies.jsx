@@ -1,33 +1,40 @@
 import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios"
+// React Table
 import { useTable } from "react-table"
 import { useGlobalFilter, useSortBy } from "react-table/dist/react-table.development";
 import { SearchFilter } from "./SearchFilter"
 
-
+// Components
 import BaseCard from "../ui/BaseCard"
+import Loading from "../Loading"
+import TheHeader from "../layout/TheHeader";
 // styles
 import { Currency } from "../styles/Currencies.styled"
 
 
 export function Currencies(props){
-    
     const [ currencies, setCurrencies ] = useState([]);
+    const [ loading, setLoading ]  = useState(false);
 
     const fetchCurrencies = async () => {
-        const response = await axios
-        .get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=INR&order=market_cap_desc&per_page=100&page=1&sparkline=false")
-        .catch((error)=> console.log(error));
-
-
-        if(response !== null){
-            const currencies = response.data;
-            console.log('Currencies : ', currencies);
+        try{
+          // eslint-disable-next-line
+          const response = await axios
+          .get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=INR&order=market_cap_desc&per_page=100&page=1&sparkline=true")
+          .then((resolve)=>{
+            const currencies = resolve.data;
+            // console.log('Currencies : ', currencies);
             setCurrencies(currencies);
+            setLoading(true);
+          })
+        }catch(error){
+          console.log(error)
         }
     
         };
 
+       
         const currenciesData = useMemo(() => [...currencies], [currencies]);
         
         const columns = useMemo(
@@ -37,7 +44,7 @@ export function Currencies(props){
                 accessor: 'market_cap_rank', // accessor is the "key" in the data
                 Cell: (props) =>(
                   <span>
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149220.png" height="16" width="16" alt="" />
+                    <img src="https://cdn-icons-png.flaticon.com/512/149/149220.png" height="16" width="16" alt="Star" />
                     {props.row.original.market_cap_rank}
                   </span>
                 )
@@ -75,9 +82,11 @@ export function Currencies(props){
               {
                 Header: '24th ',
                 accessor: 'price_change_percentage_24h',
-                Cell: (props) =>{
-                    return props.row.original.price_change_percentage_24h.toFixed(1) + '%'
-                } 
+                Cell: (props) => (
+                  <span  className={`${props.row.original.price_change_percentage_24h > 0 ? "positive" : "negative"}`} >
+                    {props.row.original.price_change_percentage_24h.toFixed(1) + '%'}
+                  </span>
+                )
               },
               {
                 Header: '24th Volume',
@@ -87,45 +96,34 @@ export function Currencies(props){
                 }
               },
               {
-                Header: 'Mark Cap',
+                Header: 'Mkt Cap',
                 accessor: 'market_cap',
                 Cell: (props) =>{
                     return '$' + props.row.original.market_cap.toLocaleString()
                 }
-              }
+              },
+         
             ],
             []
         )
        
-        const {
-          getTableProps,
-          getTableBodyProps,
-          headerGroups,
-          rows,
-          prepareRow,
-          preGlobalFilteredRows,
-          setGlobalFilter,
-          state
+        const { getTableProps,getTableBodyProps, headerGroups, rows,
+          prepareRow, preGlobalFilteredRows,setGlobalFilter, state
         } = useTable({ columns, data : currenciesData },
-            useGlobalFilter,
-            useSortBy
+          useGlobalFilter, useSortBy
         )
     
-        
-                
-        useEffect(()=>{
-            fetchCurrencies();
-        }, []);
-
-        const isEven = (index) => index % 2 === 0;
-
+            
+        useEffect(()=>{ fetchCurrencies(); }, []);
+   
         return(
            <React.Fragment>
-             <Currency>
+             {loading ? <Currency>
+                <TheHeader/>
                 <div className="cards">
-                  <BaseCard currencies={currencies} namestyle="total-positive" aim="market_cap" title="Market Capitalization"/>
-                  <BaseCard currencies={currencies} namestyle="total-positive" aim="high_24th" title="24th Trade Volume "/>
-                  <BaseCard currencies={currencies} namestyle="total-passive" aim="total_coins" title="# of Coins"/>
+                  <BaseCard currencies={currencies} aim="market_cap" percentage={true} title="Market Capitalization"/>
+                  <BaseCard currencies={currencies} aim="high_24th" percentage={true} title="24th Trade Volume "/>
+                  <BaseCard currencies={currencies} aim="total_coins" percentage={false} title="# of Coins"/>
                 </div>
                <div className="filters">
                 <SearchFilter
@@ -151,14 +149,12 @@ export function Currencies(props){
                    ))}
                </thead>
                <tbody {...getTableBodyProps()}>
-                    {rows.map((row, index)=>{
+                    {rows.map((row)=>{
                         prepareRow(row);
 
                         return (
-                           <tr {...row.getRowProps()} 
-                           className={isEven(index) ? 'not-even' : 'even' }
-                           >
-                               {row.cells.map((cell, index )=>(
+                           <tr {...row.getRowProps()} >
+                               {row.cells.map((cell)=>(
                                    <td {...cell.getCellProps()}>
                                        {cell.render("Cell")}
                                    </td>
@@ -170,7 +166,7 @@ export function Currencies(props){
                </table>
                 </div>
            
-             </Currency>
+             </Currency> : <Loading/>}
            </React.Fragment>
         )
     

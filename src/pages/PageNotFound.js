@@ -7,8 +7,7 @@ import AnimatedPage from "../components/AnimatedPage"
 function PageNotFound(){
     PageTitle("Not Found")
     return(
-        <React.Fragment>
-            <AnimatedPage>
+        <AnimatedPage>
             <NotFound>
                 <div>
                     <h1>Oops!</h1>
@@ -22,8 +21,7 @@ function PageNotFound(){
                 <Link to="/">Home</Link>
                 </div>
             </NotFound>
-            </AnimatedPage>
-        </React.Fragment>
+        </AnimatedPage>
     )
 }
 

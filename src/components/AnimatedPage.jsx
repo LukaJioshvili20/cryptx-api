@@ -9,6 +9,7 @@ const animations = {
 
 const AnimatedPage = ({ children }) => {
   return (
+    <>
     <motion.div
       variants={animations}
       initial="initial"
@@ -18,6 +19,7 @@ const AnimatedPage = ({ children }) => {
     >
       {children}
     </motion.div>
+    </>
   );
 };
 

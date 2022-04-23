@@ -2,17 +2,16 @@ import React from "react";
 // styles
 import { BaseCards } from "../styles/BaseCard.styled"
 
-
 export const BaseCard = (props) =>{
     const currencies = props.currencies;
-    const stylename = props.stylename;
+    const percentage = props.percentage;
     const aim = props.aim;
     const title = props.title;
-    console.log(stylename)
 
     const market_cap = currencies.reduce((accumulator, object)=>{
         return accumulator + object.market_cap;
     }, 0);
+
     const high_24th = currencies.reduce((accumulator, object)=>{
         return accumulator + object.current_price;
     }, 0);
@@ -20,26 +19,40 @@ export const BaseCard = (props) =>{
     const totalMarket = "$" + market_cap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     const totalHigh = "$" + high_24th.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
+    let sum, grow;
 
-    let sum;
-    if(aim === "market_cap"){
-        sum = totalMarket;  
-    }else if(aim === "high_24th"){
-        sum = totalHigh;
-    }else if(aim === "total_coins"){
-        sum = currencies.length;
+    switch (aim) {
+        case "market_cap":
+            sum = totalMarket;  
+            break;
+        case "high_24th":
+            sum = totalHigh;  
+            break;
+        case "total_coins":
+            sum = currencies.length;;  
+            break;
+        default:
+           return null;
     }
-    
+
+    switch (percentage) {
+        case true:
+            grow = <span></span>;
+            break;
+        case false:
+            grow = null;
+            break;
+        default:
+            return null
+    }
+   
     return(
-        <React.Fragment>
-            <BaseCards className={stylename}>
-                <div>
-                    <h1>{sum}</h1>
-                    <span>0.0%<span>&#8593;</span></span>
-                </div>
-                <p>{title}</p>
-            </BaseCards>
-        </React.Fragment>
+        <BaseCards className={`${percentage ?"total-positive" : "total-passive"}`} >
+            <div>
+                <h1>{sum}</h1>{grow}
+            </div>
+            <p>{title}</p>
+        </BaseCards>
     )
 }
 

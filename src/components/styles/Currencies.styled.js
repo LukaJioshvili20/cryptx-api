@@ -5,14 +5,10 @@ export const Currency = styled.div`
     flex-direction:column;
     .cards{
         display:flex;
-        flex-direction:row; 
-        
-        .total-positive{
-            border-left: 0.4rem solid var(--positive-color);
-        }
-        .total-passive{
-            border-left: 0.4rem solid #333;
-        }
+        flex-direction:row;   
+        flex-wrap:wrap;
+        justify-content: start;
+ 
     }
     th{
         background: var(--positive-color);
@@ -24,25 +20,38 @@ export const Currency = styled.div`
     td{
         border-bottom:1px solid #999;
     }
+
+    tr:hover{
+        background-color: var(--background-secondary);
+        transition: all 0.2s ease-in-out;
+    }
     
     .fixed{
-        height: 25rem;
+        height: 28rem;
         width: 100%;
         overflow:auto;
         border-radius: 1rem;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
         table{
             text-align:center;
             width: 100%;
-            height: 100%;
             th {
-                position: -webkit-sticky; // this is for all Safari (Desktop & iOS), not for Chrome
+                position: -webkit-sticky; 
                 position: sticky;
                 top: 0;
-                z-index: 1; // any positive value, layer order is global
-                
+                z-index: 1; 
             }
  
         }
     }
-    
+    @media only screen and (max-width: 768px){
+        .fixed{
+            border-radius:0;
+            table{
+                td{
+                    min-width:4rem;
+                }
+            }
+        }
+    }   
 `
