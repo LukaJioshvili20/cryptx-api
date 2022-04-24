@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios"
+import { Sparklines, SparklinesLine } from 'react-sparklines';
 // React Table
 import { useTable } from "react-table"
 import { useGlobalFilter, useSortBy } from "react-table/dist/react-table.development";
@@ -102,7 +103,15 @@ export function Currencies(props){
                     return '$' + props.row.original.market_cap.toLocaleString()
                 }
               },
-         
+              {
+                Header: 'Last 7 days',
+                accessor: 'sparkline_in_7d',
+                Cell: (props) => (
+                  <Sparklines data={props.row.original.sparkline_in_7d.price}  preserveAspectRatio="none" style={{ width: '200px', height: '50px' }} limit={200}>
+                    <SparklinesLine style={{ stroke: "#00E670", strokeWidth: "1", fill: "none" }} />
+                  </Sparklines>
+                )
+              },
             ],
             []
         )

@@ -18,7 +18,7 @@ export function SearchFilter({
 
     return(
         <Search>
-            <form className="nosubmit">
+            <form className="nosubmit" onSubmit={e => e.preventDefault()}>
                 <input className="nosubmit" type="text" value={value || ""} onChange={(e)=>{
                  setValue(e.target.value);
                  onChange(e.target.value);
