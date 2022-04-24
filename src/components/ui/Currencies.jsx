@@ -1,19 +1,21 @@
 import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios"
-import { Sparklines, SparklinesLine } from 'react-sparklines';
 // React Table
 import { useTable } from "react-table"
 import { useGlobalFilter, useSortBy } from "react-table/dist/react-table.development";
 import SearchFilter from "./SearchFilter"
+
+// Charts
+import { Sparklines, SparklinesLine } from 'react-sparklines';
 
 // Components
 import BaseCard from "../ui/BaseCard"
 import Loading from "../Loading"
 import TheHeader from "../layout/TheHeader";
 import Star from "../../assets/images/star.png"
+
 // styles
 import { Currency } from "../styles/Currencies.styled"
-
 
 function Currencies(props){
     const [ currencies, setCurrencies ] = useState([]);

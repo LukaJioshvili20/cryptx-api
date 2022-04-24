@@ -1,14 +1,15 @@
 import React from "react"
+// Router
 import { Link } from "react-router-dom"
 // Utils
 import PageTitle from "../utils/PageTitle"
+// Styles
 import { NotFound } from "../components/styles/NotFound.styled"
-import AnimatedPage from "../components/AnimatedPage"
 
 function PageNotFound(){
-    PageTitle("Not Found");
+    PageTitle("Not Found")
     return(
-        <AnimatedPage>
+        <React.Fragment>
             <NotFound>
                 <div>
                     <h1>Oops!</h1>
@@ -22,7 +23,7 @@ function PageNotFound(){
                 <Link to="/">Home</Link>
                 </div>
             </NotFound>
-        </AnimatedPage>
+        </React.Fragment>
     )
 }
 
