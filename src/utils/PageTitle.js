@@ -1,4 +1,4 @@
-export const PageTitle = ( newTitle ) =>{
+const PageTitle = ( newTitle ) =>{
     return document.title = `Crptocurrency App - ${newTitle}`;
 }
 

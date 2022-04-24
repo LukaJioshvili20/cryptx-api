@@ -4,7 +4,7 @@ import { useAsyncDebounce } from "react-table/dist/react-table.development";
 // Styles
 import { Search } from "../styles/SearchFilter.styled"
 
-export function SearchFilter({
+function SearchFilter({
     preGlobalFilteredRows,
     globalFilter,
     setGlobalFilter
@@ -28,3 +28,4 @@ export function SearchFilter({
         </Search>
     )
 }
+export default SearchFilter;

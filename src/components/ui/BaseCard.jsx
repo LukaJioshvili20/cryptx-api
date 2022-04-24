@@ -2,7 +2,7 @@ import React from "react";
 // styles
 import { BaseCards } from "../styles/BaseCard.styled"
 
-export const BaseCard = (props) =>{
+const BaseCard = (props) =>{
     const currencies = props.currencies;
     const percentage = props.percentage;
     const aim = props.aim;

@@ -1,7 +1,12 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Cryptocurrency",
+  "name": "Cryptocurrency by API",
   "icons": [
+    {
+      "src": "icon.png",
+      "size": "64x64",
+      "type": "image/png"
+    }
   ],
   "start_url": ".",
   "display": "standalone",

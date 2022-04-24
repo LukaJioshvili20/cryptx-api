@@ -4,17 +4,18 @@ import { Sparklines, SparklinesLine } from 'react-sparklines';
 // React Table
 import { useTable } from "react-table"
 import { useGlobalFilter, useSortBy } from "react-table/dist/react-table.development";
-import { SearchFilter } from "./SearchFilter"
+import SearchFilter from "./SearchFilter"
 
 // Components
 import BaseCard from "../ui/BaseCard"
 import Loading from "../Loading"
 import TheHeader from "../layout/TheHeader";
+import Star from "../../assets/images/star.png"
 // styles
 import { Currency } from "../styles/Currencies.styled"
 
 
-export function Currencies(props){
+function Currencies(props){
     const [ currencies, setCurrencies ] = useState([]);
     const [ loading, setLoading ]  = useState(false);
 
@@ -45,7 +46,7 @@ export function Currencies(props){
                 accessor: 'market_cap_rank', // accessor is the "key" in the data
                 Cell: (props) =>(
                   <span>
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149220.png" height="16" width="16" alt="Star" />
+                    <img src={Star} loading="lazy" height="16" width="16" alt="Star" />
                     {props.row.original.market_cap_rank}
                   </span>
                 )
@@ -54,7 +55,7 @@ export function Currencies(props){
                 Header: '',
                 accessor: 'image',
                 Cell: (props) => (
-                      <img className="CoinIcon"
+                      <img className="CoinIcon" loading="lazy" width='40' height='40'
                         src={props.row.original.image} alt="Coin Icon"
                       />    
                   )
@@ -177,9 +178,7 @@ export function Currencies(props){
            
              </Currency> : <Loading/>}
            </React.Fragment>
-        )
-    
+        )    
 }
-
 
 export default Currencies;
