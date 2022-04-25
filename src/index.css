@@ -35,10 +35,6 @@ body {
 }
 
 
-::-webkit-scrollbar {
-  width: 0;
-}
-
 .total-positive{
   border-left: 0.4rem solid var(--positive-color);
 }

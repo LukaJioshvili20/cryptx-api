@@ -1,6 +1,4 @@
 import React from "react"
-// Styles
-import './App.css';
 // Router
 import { useLocation } from 'react-router';
 import { Routes, Route, Navigate } from "react-router-dom"
@@ -11,13 +9,13 @@ const PageNotFound = React.lazy(()=> import ('./pages/PageNotFound'))
 function App() {
   const location = useLocation();
   return (
-    <div className="App">
+    <React.Fragment>
       <Routes key={location.pathname} location={location}>
         <Route exact path="/" element={<Home/>}/>
         <Route path="/not-found" element={<PageNotFound/>}/>
         <Route path="*" element={<Navigate to="/not-found" />}/>
       </Routes>
-    </div>
+    </React.Fragment>
   );
 }
 

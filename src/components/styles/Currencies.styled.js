@@ -12,13 +12,15 @@ export const Currency = styled.div`
     }
     th{
         background: var(--positive-color);
-        color: white;
+        color: var(--primary-text);
+        font-weight: 600;
         padding: 0.5rem 0;
         border-bottom:1px solid #999;
     }
 
     td{
         border-bottom:1px solid #999;
+        padding: 0 0.5rem;
     }
 
     tr:hover{

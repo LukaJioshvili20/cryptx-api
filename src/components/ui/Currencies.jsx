@@ -25,10 +25,10 @@ function Currencies(props){
         try{
           // eslint-disable-next-line
           const response = await axios
-          .get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=INR&order=market_cap_desc&per_page=100&page=1&sparkline=true")
+          .get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h,24h,7d&market_chart")
           .then((resolve)=>{
             const currencies = resolve.data;
-            // console.log('Currencies : ', currencies);
+            console.log('Currencies : ', currencies);
             setCurrencies(currencies);
             setLoading(true);
           })
@@ -47,17 +47,17 @@ function Currencies(props){
                 Header: '#',
                 accessor: 'market_cap_rank', // accessor is the "key" in the data
                 Cell: (props) =>(
-                  <span>
-                    <img src={Star} loading="lazy" height="16" width="16" alt="Star" />
-                    {props.row.original.market_cap_rank}
-                  </span>
+                  <div style={{display:'flex',}}>
+                    <img src={Star} height="16" width="16" alt="Star" style={{margin: 'auto 0.25rem'}} />
+                    <p>{props.row.original.market_cap_rank}</p>
+                  </div>
                 )
               }, 
               {
                 Header: '',
                 accessor: 'image',
                 Cell: (props) => (
-                      <img className="CoinIcon" loading="lazy" width='40' height='40'
+                      <img className="CoinIcon" loading="lazy" width='40' height='auto'
                         src={props.row.original.image} alt="Coin Icon"
                       />    
                   )
@@ -65,6 +65,9 @@ function Currencies(props){
               {
                 Header: 'Coin', 
                 accessor: 'name', 
+                Cell: (props) => (
+                  <span style={{fontWeight:600}}>{props.row.original.name}</span>
+                )
               },
               {
                 Header: '',
@@ -84,19 +87,37 @@ function Currencies(props){
                 
               },
               {
-                Header: '24th ',
-                accessor: 'price_change_percentage_24h',
+                Header: '1h ',
+                accessor: 'price_change_percentage_1h_in_currency',
                 Cell: (props) => (
-                  <span  className={`${props.row.original.price_change_percentage_24h > 0 ? "positive" : "negative"}`} >
-                    {props.row.original.price_change_percentage_24h.toFixed(1) + '%'}
+                  <span  className={`${props.row.original.price_change_percentage_1h_in_currency > 0 ? "positive" : "negative"}`} >
+                    {props.row.original.price_change_percentage_1h_in_currency.toFixed(1) + '%'}
                   </span>
                 )
               },
               {
-                Header: '24th Volume',
-                accessor: 'high_24h', 
+                Header: '24h ',
+                accessor: 'price_change_percentage_24h_in_currency',
+                Cell: (props) => (
+                  <span  className={`${props.row.original.price_change_percentage_24h_in_currency > 0 ? "positive" : "negative"}`} >
+                    {props.row.original.price_change_percentage_24h_in_currency.toFixed(1) + '%'}
+                  </span>
+                )
+              },
+              {
+                Header: '7d ',
+                accessor: 'price_change_percentage_7d_in_currency',
+                Cell: (props) => (
+                  <span  className={`${props.row.original.price_change_percentage_7d_in_currency > 0 ? "positive" : "negative"}`} >
+                    {props.row.original.price_change_percentage_7d_in_currency.toFixed(1) + '%'}
+                  </span>
+                )
+              },
+              {
+                Header: '24h Volume',
+                accessor: 'total_volume', 
                 Cell: (props) =>{
-                    return '$' + props.row.original.high_24h
+                    return '$' + props.row.original.total_volume.toLocaleString()
                 }
               },
               {
@@ -134,7 +155,7 @@ function Currencies(props){
                 <TheHeader/>
                 <div className="cards">
                   <BaseCard currencies={currencies} aim="market_cap" percentage={true} title="Market Capitalization"/>
-                  <BaseCard currencies={currencies} aim="high_24th" percentage={true} title="24th Trade Volume "/>
+                  <BaseCard currencies={currencies} aim="total_volume" percentage={true} title="24th Trade Volume "/>
                   <BaseCard currencies={currencies} aim="total_coins" percentage={false} title="# of Coins"/>
                 </div>
                <div className="filters">

@@ -12,12 +12,13 @@ const BaseCard = (props) =>{
         return accumulator + object.market_cap;
     }, 0);
 
-    const high_24th = currencies.reduce((accumulator, object)=>{
-        return accumulator + object.current_price;
+    const total_volume = currencies.reduce((accumulator, object)=>{
+        return accumulator + object.total_volume;
     }, 0);
 
-    const totalMarket = "$" + market_cap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    const totalHigh = "$" + high_24th.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+    const totalMarket = "$" + market_cap.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const totalVolume = "$" + total_volume.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
     let sum, grow;
 
@@ -25,8 +26,8 @@ const BaseCard = (props) =>{
         case "market_cap":
             sum = totalMarket;  
             break;
-        case "high_24th":
-            sum = totalHigh;  
+        case "total_volume":
+            sum = totalVolume;  
             break;
         case "total_coins":
             sum = currencies.length;;  
