@@ -29,7 +29,7 @@ export const Currency = styled.div`
     }
     
     .fixed{
-        height: 28rem;
+        height: 22.75rem;
         width: 100%;
         overflow:auto;
         border-radius: 1rem;

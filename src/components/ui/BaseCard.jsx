@@ -4,7 +4,7 @@ import { BaseCards } from "../styles/BaseCard.styled"
 
 const BaseCard = (props) =>{
     const currencies = props.currencies;
-    const percentage = props.percentage;
+    const positive = props.positive;
     const aim = props.aim;
     const title = props.title;
 
@@ -36,19 +36,9 @@ const BaseCard = (props) =>{
            return null;
     }
 
-    switch (percentage) {
-        case true:
-            grow = <span></span>;
-            break;
-        case false:
-            grow = null;
-            break;
-        default:
-            return null
-    }
    
     return(
-        <BaseCards className={`${percentage ?"total-positive" : "total-passive"}`} >
+        <BaseCards className={`${positive ? "total-positive" : "total-passive"}`} >
             <div>
                 <h1>{sum}</h1>{grow}
             </div>

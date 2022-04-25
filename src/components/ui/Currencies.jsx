@@ -154,9 +154,9 @@ function Currencies(props){
              {loading ? <Currency>
                 <TheHeader/>
                 <div className="cards">
-                  <BaseCard currencies={currencies} aim="market_cap" percentage={true} title="Market Capitalization"/>
-                  <BaseCard currencies={currencies} aim="total_volume" percentage={true} title="24th Trade Volume "/>
-                  <BaseCard currencies={currencies} aim="total_coins" percentage={false} title="# of Coins"/>
+                  <BaseCard currencies={currencies} aim="market_cap" positive={true} title="Market Capitalization"/>
+                  <BaseCard currencies={currencies} aim="total_volume" positive={true} title="24th Trade Volume "/>
+                  <BaseCard currencies={currencies} aim="total_coins" positive={false} title="# of Coins"/>
                 </div>
                <div className="filters">
                 <SearchFilter
