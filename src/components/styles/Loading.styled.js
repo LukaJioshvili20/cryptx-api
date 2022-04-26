@@ -5,7 +5,7 @@ export const Spinner = styled.div`
 ::after {
     content: "";
     position: absolute;
-    border: 3px solid var(--positive-color);
+    border: 3px solid #01DEE0;
     border-radius: 50%;
     animation: perant 2.5s linear  infinite ;
     -webkit-animation: perant 2.5s linear  infinite ;

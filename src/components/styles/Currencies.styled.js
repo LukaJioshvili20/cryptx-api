@@ -10,26 +10,13 @@ export const Currency = styled.div`
         justify-content: start;
  
     }
-    th{
-        background: var(--positive-color);
-        color: var(--primary-text);
-        font-weight: 600;
-        padding: 0.5rem 0;
-        border-bottom:1px solid #999;
-    }
 
-    td{
-        border-bottom:1px solid #999;
-        padding: 0 0.5rem;
-    }
 
-    tr:hover{
-        background-color: var(--background-secondary);
-        transition: all 0.2s ease-in-out;
-    }
+
+  
     
     .fixed{
-        height: 22.75rem;
+        height: 26.5rem;
         width: 100%;
         overflow:auto;
         border-radius: 1rem;
@@ -37,13 +24,28 @@ export const Currency = styled.div`
         table{
             text-align:center;
             width: 100%;
+            background-color: #2A344C;
             th {
                 position: -webkit-sticky; 
                 position: sticky;
                 top: 0;
-                z-index: 1; 
+                z-index: 100;
+                font-weight: 700;
+                font-size:1.1rem;
+                padding: 0.5rem 0;
+                border-bottom:1px solid #999;
+                background-color: #1F273A;
             }
- 
+            td{
+                border-bottom:1px solid #999;
+                padding: 0 0.5rem;
+            }
+            tbody{
+                tr:hover{
+                    background-color:#1F273A;
+                    transition: all 0.2s ease-in-out;
+                }
+            }
         }
     }
     @media only screen and (max-width: 768px){

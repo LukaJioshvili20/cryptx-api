@@ -32,7 +32,7 @@ export const NotFound = styled.div`
             padding: 1rem 0;
         }
         a{
-            color: var(--positive-color);
+            color: var(--text-active);
             width: auto;
             display:inline-block;
         }

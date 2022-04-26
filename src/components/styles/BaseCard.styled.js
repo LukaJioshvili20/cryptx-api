@@ -8,7 +8,8 @@ export const BaseCards = styled.div`
     border-radius: 0.5rem;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     min-width: 4rem;
-
+    background-color: var(--background-secondary);
+    
     div{
         display:flex;
         flex-direction:row;
@@ -26,7 +27,7 @@ export const BaseCards = styled.div`
     }
     p{
         font-size:0.75rem;
-        color: var(--text-secondary)
+        color: var(--text-active);
     }
     @media only screen and (max-width: 768px){
         margin-bottom: 1rem;

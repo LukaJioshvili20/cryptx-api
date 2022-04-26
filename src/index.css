@@ -1,14 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 :root{
-  --text-primary: #25262A;
-  --text-secondary: #555;
-  --text-active: var(--active-color);
+  --text-primary: #fff;
+  --text-secondary: #25262A;
+  --text-active: #01DEE0;
 
   --positive-color: #00E670;
   --negative-color: #FF1740;
 
-  --background-primary: #FFFFFF;
-  --background-secondary: #F3F4F6;
+  --background-primary: #181F2E;
+  --background-secondary: #2A344C;
+  --background-alternative: #1F273A;
 
 }
 
@@ -19,12 +20,11 @@
 }
 
 body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Quicksand', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--text-primary);
-
+  background-color: var(--background-primary);
 }
 
 
@@ -40,7 +40,7 @@ body {
   border-left: 0.4rem solid var(--positive-color);
 }
 .total-passive{
-  border-left: 0.4rem solid #777;
+  border-left: 0.4rem solid var(--background-alternative);
 }
 .positive{
   color: var(--positive-color);

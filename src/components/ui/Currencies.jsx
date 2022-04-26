@@ -132,7 +132,7 @@ function Currencies(props){
                 accessor: 'sparkline_in_7d',
                 Cell: (props) => (
                   <Sparklines data={props.row.original.sparkline_in_7d.price}  preserveAspectRatio="none" style={{ width: '200px', height: '50px' }} limit={200}>
-                    <SparklinesLine style={{ stroke: "#00E670", strokeWidth: "1", fill: "none" }} />
+                    <SparklinesLine style={{ stroke: "#01DEE0", strokeWidth: "1", fill: "none" }} />
                   </Sparklines>
                 )
               },
