@@ -7,7 +7,7 @@ export class TheHeader extends Component{
         return(
             <React.Fragment>
                 <Header>
-                    <h2>Crptocurrency Prices by Market Cap</h2>
+                    <h2>Cryptocurrency Prices by Market Cap</h2>
                 </Header>
             </React.Fragment>
         )

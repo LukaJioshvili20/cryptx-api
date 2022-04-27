@@ -26,7 +26,7 @@ export const Search = styled.div`
   }
 
   input[type="search"]::placeholder {
-    color: var(--text-primary);
+    color: white;
   }
   
   button[type="submit"] {
